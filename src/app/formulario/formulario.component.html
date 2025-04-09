@@ -1,0 +1,6 @@
+<form (ngSubmit)="adicionarContato()">
+  <input [(ngModel)]="nome" name="nome" placeholder="Nome" required>
+  <input [(ngModel)]="email" name="email" placeholder="seuemail@gmail.com" required>
+  <input [(ngModel)]="telefone" name="telefone" placeholder="6299999-9999" required>
+  <button type="submit"> Adicionar Contato</button>
+</form>

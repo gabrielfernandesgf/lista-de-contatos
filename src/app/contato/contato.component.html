@@ -1,0 +1,13 @@
+<div *ngIf="contato; else naoEncontrado">
+  <h2>Detalhes do Contato</h2>
+  <p><strong>Nome:</strong>{{ contato.nome }}</p>
+  <p><strong>Email:</strong>{{ contato.email }}</p>
+  <p><strong>Telefone:</strong>{{ contato.telefone }}</p>
+
+  <a routerLink="/">Voltar para a Lista</a>
+</div>
+
+<ng-template #naoEncontrado>
+  <p>Contato não Encontrado.</p>
+  <a routerLink="/">Voltar</a>
+</ng-template>
