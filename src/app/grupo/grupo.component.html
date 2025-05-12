@@ -1,0 +1,13 @@
+<h1>Grupos de Contatos</h1>
+
+<input [(ngModel)]="nome" />
+<button (click)="salva()"> {{ editandoId ? 'Atualizar' : 'Adicionar' }}</button>
+<button *ngIf="editandoId" (click)="resetar()">Cancelar</button>
+
+<ul>
+  <li *ngFor="let grupo of grupos">
+    {{ grupo.nome }}
+    <button (click)="editar(grupo)">Editar</button>
+    <button (click)="excluir(grupo.id!)">Excluir</button>
+  </li>
+</ul>
