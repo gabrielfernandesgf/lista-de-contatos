@@ -1,18 +1,13 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { ListaDeContatosComponent } from './lista-de-contatos/lista-de-contatos.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ContatoComponent } from './contato/contato.component';
-import {NgModule} from '@angular/core';
+import {GrupoComponent} from './grupo/grupo.component';
 
 export const routes: Routes = [
-  {path: '', component: ListaDeContatosComponent },
-  {path: 'adicionar', component: FormularioComponent },
+  {path: 'lista', component: ListaDeContatosComponent },
+  {path: 'formulario', component: FormularioComponent },
   {path: 'detalhes/:id', component: ContatoComponent},
+  {path: '', redirectTo: 'formulario', pathMatch: 'full'},
+  {path: 'grupo', component: GrupoComponent },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-
-export class AppRoutingModule {}

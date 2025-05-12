@@ -1,34 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Contato } from '../contato/contato.component';
-import {NgForOf} from '@angular/common';
 import { ContatoService } from '../service/contato.service';
-import {RouterLink} from '@angular/router';
+import { NgForOf } from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
+import { Contato } from '../model/contato';
 
 @Component({
   selector: 'app-lista-de-contatos',
+  standalone: true,
   imports: [
     NgForOf,
-    RouterLink
   ],
   templateUrl: './lista-de-contatos.component.html',
   styleUrl: './lista-de-contatos.component.css'
 })
 export class ListaDeContatosComponent {
+
   contatos: Contato[] = [];
 
-  constructor(private contatoService: ContatoService) { }
-
-  ngOnInit() {
-    this.carregarContatos();
+  constructor(private service: ContatoService, private router: Router) {
+    this.service.findAll().subscribe(contatos => this.contatos = contatos);
   }
 
-  carregarContatos() {
-    this.contatos = this.contatoService.getContatos();
+  detalhe(id: number | undefined) {
+    if (id != null) {
+      this.router.navigateByUrl(`detalhes/${id}`);
+    } else {
+      alert('ID inválido');
+    }
+
+    // /lista-de-contatos/${id}
   }
 
-  removeContato(id: number) {
-    this.contatoService.removerContato(id);
-    this.carregarContatos();
+  novoContato(){
+    this.router.navigateByUrl('/formulario');
   }
-
 }
+

@@ -1,13 +1,18 @@
-<div *ngIf="contato; else naoEncontrado">
-  <h2>Detalhes do Contato</h2>
-  <p><strong>Nome:</strong>{{ contato.nome }}</p>
-  <p><strong>Email:</strong>{{ contato.email }}</p>
-  <p><strong>Telefone:</strong>{{ contato.telefone }}</p>
+<h1> Detalhe Contato</h1>
 
-  <a routerLink="/">Voltar para a Lista</a>
-</div>
+<label>ID: {{ contato?.id }}</label><br>
+<label>Nome: {{ contato?.nome }}</label><br>
+<label>Telefone: {{ contato?.telefone }}</label><br>
+<label>Email: {{ contato?.email }}</label><br>
+<label>Grupos:</label>
+<ul>
+  <li *ngFor="let g of contato?.grupos">{{ g.grupo.nome }}</li>
+</ul>
 
-<ng-template #naoEncontrado>
-  <p>Contato não Encontrado.</p>
-  <a routerLink="/">Voltar</a>
-</ng-template>
+<button (click)="adicionarGrupo()">Adicionar Grupo</button>
+
+
+<br>
+<br>
+
+<button (click)="voltar()">Voltar</button>

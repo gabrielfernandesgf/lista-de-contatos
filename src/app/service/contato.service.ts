@@ -1,29 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Contato } from '../contato/contato.component';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {Contato} from '../model/contato';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContatoService {
-  private contatos: Contato[] = [];
-  private idAtual = 1;
 
-  getContatos(): Contato[]{
-    return this.contatos;
+  url: string = 'http://localhost:8080/contato';
+
+  constructor(private http: HttpClient) { }
+
+  findAll(): Observable<Contato[]>{
+    return this.http.get<Contato[]>(this.url)
   }
 
-  adicionarContato(contato: Omit<Contato, 'id'>) {
-    const novoContato: Contato = { id: this.idAtual++, ...contato};
-    this.contatos.push(novoContato);
+  findById(id: number): Observable<Contato>{
+    return this.http.get<Contato>(this.url+'/'+id)
   }
 
-  removerContato(id: number) {
-    this.contatos = this.contatos.filter(c => c.id !== id);
+  save(contato: Contato): Observable<Contato>{
+    const ContatoAdaptado = {
+      ...contato,
+      grupos: contato.grupos?.map((g) => ({
+        grupo: {id: g.grupo.id}
+      })) ?? []
+    };
+    return this.http.post<Contato>(this.url, ContatoAdaptado)
   }
 
-  getContatoId(id: number): Contato | undefined {
-    return this.contatos.find(c => c.id === id);
+  update(contato: Contato): Observable<Contato>{
+    return this.http.put<Contato>(this.url, contato)
   }
 
-  constructor() { }
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`)
+  }
+
+  vincularGrupo(contatoId: number, grupoId: number) {
+    return this.http.put(`/api/contatos/${contatoId}/grupo/${grupoId}`, {});
+  }
+
 }
+

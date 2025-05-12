@@ -1,6 +1,31 @@
-<form (ngSubmit)="adicionarContato()">
-  <input [(ngModel)]="nome" name="nome" placeholder="Nome" required>
-  <input [(ngModel)]="email" name="email" placeholder="seuemail@gmail.com" required>
-  <input [(ngModel)]="telefone" name="telefone" placeholder="6299999-9999" required>
-  <button type="submit"> Adicionar Contato</button>
-</form>
+<h1>Formulario de Contato</h1>
+<br/>
+<label>Nome: </label><input [(ngModel)]="nome"/>
+<br/><br/>
+
+<label>Telefone: </label><input [(ngModel)]="telefone">
+<br/><br/>
+
+<label>Email: </label><input [(ngModel)]="email">
+<br/><br/>
+
+<label>Grupo:</label>
+<select [(ngModel)]="grupoId" name="grupoId">
+  <option [value]="null">Sem Grupo</option>
+  <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.nome }}</option>
+</select>
+
+<button (click)="toggleCriarGrupo()" style="margin-left: 10px;">+ Novo Grupo</button>
+
+<div *ngIf="criandoGrupo" style="margin-top: 10px;">
+  <input [(ngModel)]="nomeNovoGrupo" placeholder="Nome do novo grupo" />
+  <button (click)="criarGrupo()">Salvar Grupo</button>
+  <button (click)="cancelarGrupo()">Cancelar</button>
+</div>
+<br/><br/>
+
+
+<button (click)="adiciona()">Salvar</button>
+<button (click)="voltar()">Voltar</button>
+
+

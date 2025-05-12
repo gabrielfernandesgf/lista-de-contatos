@@ -1,8 +1,28 @@
-<ul>
-  <li *ngFor="let contato of contatos">
-    <a [routerLink]="['/detalhes', contato.id]">
-      {{ contato.nome }} - {{ contato.email }} - {{ contato.telefone }}
-    </a>
-    <button (click)="removeContato(contato.id)">Remover</button>
-  </li>
-</ul>
+<!--<ul>-->
+<!--  <li *ngFor="let contato of contatos">-->
+<!--    <a [routerLink]="['/detalhes', contato]">-->
+<!--      {{ contato.nome }} - {{ contato.email }} - {{ contato.telefone }}-->
+<!--    </a>-->
+<!--    <button (click)="removerContato(contato.id)">Remover</button>-->
+<!--  </li>-->
+<!--</ul>-->
+
+<h1>Lista de Contatos</h1>
+
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Ação</th>
+  </tr>
+  <tr *ngFor="let contato of contatos">
+    <td>{{ contato.id }}</td>
+    <td>{{ contato.nome }}</td>
+    <td>
+      <button (click)="detalhe(contato.id)">Detalhe</button>
+    </td>
+
+  </tr>
+</table>
+<br><br><br>
+<button (click)="novoContato()">Novo Contato</button>
