@@ -1,31 +1,78 @@
-<h1>Formulario de Contato</h1>
-<br/>
-<label>Nome: </label><input [(ngModel)]="nome"/>
-<br/><br/>
+<!--<h1>Formulario de Contato</h1>-->
+<!--<br/>-->
+<!--<label>Nome: </label><input [(ngModel)]="nome"/>-->
+<!--<br/><br/>-->
 
-<label>Telefone: </label><input [(ngModel)]="telefone">
-<br/><br/>
+<!--<label>Telefone: </label><input [(ngModel)]="telefone">-->
+<!--<br/><br/>-->
 
-<label>Email: </label><input [(ngModel)]="email">
-<br/><br/>
+<!--<label>Email: </label><input [(ngModel)]="email">-->
+<!--<br/><br/>-->
 
-<label>Grupo:</label>
-<select [(ngModel)]="grupoId" name="grupoId">
-  <option [value]="null">Sem Grupo</option>
-  <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.nome }}</option>
-</select>
+<!--<label>Grupo:</label>-->
+<!--<select [(ngModel)]="grupoId" name="grupoId">-->
+<!--  <option [value]="null">Sem Grupo</option>-->
+<!--  <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.nome }}</option>-->
+<!--</select>-->
 
-<button (click)="toggleCriarGrupo()" style="margin-left: 10px;">+ Novo Grupo</button>
+<!--<button (click)="toggleCriarGrupo()" style="margin-left: 10px;">+ Novo Grupo</button>-->
 
-<div *ngIf="criandoGrupo" style="margin-top: 10px;">
-  <input [(ngModel)]="nomeNovoGrupo" placeholder="Nome do novo grupo" />
-  <button (click)="criarGrupo()">Salvar Grupo</button>
-  <button (click)="cancelarGrupo()">Cancelar</button>
+<!--<div *ngIf="criandoGrupo" style="margin-top: 10px;">-->
+<!--  <input [(ngModel)]="nomeNovoGrupo" placeholder="Nome do novo grupo" />-->
+<!--  <button (click)="criarGrupo()">Salvar Grupo</button>-->
+<!--  <button (click)="cancelarGrupo()">Cancelar</button>-->
+<!--</div>-->
+<!--<br/><br/>-->
+
+
+<!--<p-button (click)="adiciona()" label="Salvar" />-->
+<!--<p-button (click)="voltar()" label="Voltar" />-->
+
+<h2 class="mb-4">Formulário de Contato</h2>
+
+<div class="p-fluid">
+
+  <div class="field">
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" pInputText [(ngModel)]="nome" />
+  </div>
+
+  <div class="field">
+    <label for="telefone">Telefone</label>
+    <input id="telefone" type="text" pInputText [(ngModel)]="telefone" />
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" type="email" pInputText [(ngModel)]="email" />
+  </div>
+
+  <div class="field">
+    <label for="grupo">Grupo</label>
+    <p-dropdown
+      [options]="grupos"
+      optionLabel="nome"
+      optionValue="id"
+      placeholder="Sem Grupo"
+      [(ngModel)]="grupoId"
+      [showClear]="true"
+    ></p-dropdown>
+    <button pButton label="+ Novo Grupo" class="p-button-text p-mt-2" (click)="toggleCriarGrupo()"></button>
+  </div>
+
+  <div *ngIf="criandoGrupo" class="p-grid p-ai-center p-mt-2">
+    <div class="p-col-12 p-md-6">
+      <input type="text" pInputText placeholder="Nome do novo grupo" [(ngModel)]="nomeNovoGrupo" />
+    </div>
+    <div class="p-col-12 p-md-6">
+      <button pButton label="Salvar Grupo" (click)="criarGrupo()" class="p-button-sm p-mr-2"></button>
+      <button pButton label="Cancelar" class="p-button-secondary p-button-sm" (click)="cancelarGrupo()"></button>
+    </div>
+  </div>
+
+  <div class="p-mt-4">
+    <button pButton label="Salvar" icon="pi pi-check" class="p-button-success p-mr-2" (click)="adiciona()"></button>
+    <button pButton label="Voltar" icon="pi pi-arrow-left" class="p-button-secondary" (click)="voltar()"></button>
+  </div>
+
 </div>
-<br/><br/>
-
-
-<button (click)="adiciona()">Salvar</button>
-<button (click)="voltar()">Voltar</button>
-
-

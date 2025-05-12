@@ -6,15 +6,21 @@ import { FormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import {NgForOf, NgIf, CommonModule} from '@angular/common';
 import {Contato} from '../model/contato';
+import { Button, ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
-    NgForOf,
     NgIf,
-    CommonModule
+    NgForOf,
+    InputTextModule,
+    DropdownModule,
+    ButtonModule,
   ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
